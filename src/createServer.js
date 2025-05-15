@@ -28,18 +28,18 @@ function createServer() {
       return;
     }
 
-    if (!fs.existsSync(realPath)) {
-      res.statusCode = 404;
-      res.setHeader('Content-Type', 'text/plain');
-      res.end('No such file');
-
-      return;
-    }
-
     if (pathname.includes('//')) {
       res.statusCode = 404;
       res.setHeader('Content-Type', 'text/plain');
       res.end('Duplicate slashes not allowed');
+
+      return;
+    }
+
+    if (!fs.existsSync(realPath)) {
+      res.statusCode = 404;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('No such file');
 
       return;
     }
